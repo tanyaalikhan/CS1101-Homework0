@@ -1,0 +1,201 @@
+;; Tanya Khan
+;; takhan
+
+;;------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+;; 1a) 
+(* (- (* 5 3) (- 8 (string-length (string-append "CS" "1101")))) (/ 64 16))
+;; (* (- (* 5 3) (- 8 (string-length ("CS1101"))) (/ 64 16))
+;; (* (- (* 5 3) (- 8 (6)) (/ 64 16))
+;; (* (- (* 5 3) 2) (/ 64 16))
+;; (* (- (15 2) (/ 64 16))
+;; (* (- (15 2) (4))
+;; (* (- (15 2) (4))
+;; (* (13 4))
+;; 52
+
+;; 1b)
+(define (triple n) (* n 3))(if (< (triple 2) (triple (/ 12 4))) (sqrt (+ 4 (* 15 4))) 107)  
+;; (if (< 6 (triple (/ 12 4))) (sqrt (+ 4 (* 15 4))) 107)
+;; (if (< 6 (triple 3)) (sqrt (+ 4 (* 15 4))) 107)
+;; (if (< 6 9) (sqrt (+ 4 (* 15 4))) 107)
+;; (if (< 6 9) (sqrt (+ 4 60)) 107)
+;; (if (< 6 9) (sqrt (64) 107)
+;; (if (< 6 9) (8 107)
+;; (true (8 107)
+;; (true (8) 
+;; 8
+;;------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+;; 2)
+
+(require 2htdp/image)
+
+;;(define (four-square GOAT)((above (beside GOAT GOAT)(flip-horizontal(beside GOAT GOAT)))))
+(define (four-square GOAT)(above(beside GOAT (flip-horizontal GOAT))(flip-vertical(beside GOAT (flip-horizontal GOAT)))))
+;;(flip-vertical(beside GOAT GOAT))))
+(define GOAT.)
+
+(check-expect (four-square GOAT).) 
+;;------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+;; 3)
+
+(define CENTER-COST 2500)
+(define MONEY-PER-ATTENDEE 3)
+;; $2500 is a fixed value that has been hard-coded as a constant, CENTER-COST, since this value will not be changed (this is why it is in all caps) 
+;; $3 is a fixed value that has been hard-coded as a constant, MONEY-PER-ATTENDEE, since this value will not be changed (this is why it is in all caps) 
+;;------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+;; cost function
+
+;; cost: Natural -> Natural
+;; consumes number of attendees and produces the total cost of the event
+;; (define (cost attendees) 0)
+(define (cost attendees)
+  (+ CENTER-COST (* attendees MONEY-PER-ATTENDEE)))
+(check-expect (cost 10) 2530)
+;; written explaination for future reference:
+
+;; function cost will take in one argument/parameter/value which is going to be attendees (# of attendees)
+;; function cost will then perform a series of operations on three values (two of which-- CENTER-COST and MONEY-PER-ATTENDEE are constants) and the variable attendees
+;; function cost will multiply attendees by MONEY-PER-ATTENDEE to find out the cost per head
+;; function cost will then add the total cost for all the attendees with the CENTER-COST to produce the cost to the performing arts center to hold the event
+
+;; mathematical explaination: 
+
+;; (cost 10)(+ CENTER-COST (* attendees MONEY-PER-ATTENDEE)))
+;; (cost 10)(+ 2500 (* 10 3)
+;; (cost 10)(+ 2500 (30)
+;; (cost 10)(2530)
+;;------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+;; revenue function
+
+;; revenue: Natural Natural -> Natural
+;; consumes number of attendees and ticket-price and produces revenue 
+;; (define (revenue attendees ticket-price) 0) 
+(define (revenue attendees ticket-price)
+  (* attendees ticket-price))
+(check-expect (revenue 10 5) 50)
+;; written explaination for future reference:
+
+;; function revenue is going to take in two parameters (values): number of attendees and ticket-price
+;; function revenue will then use the multiplication operand to evaluate the product of attendees times ticket-price
+
+;; mathematical explaination:
+
+;; (revenue 10 5)(* attendees ticket-price))
+;; (revenue 10 5)(* 10 5)
+;; (revenue 10 5)(50)
+;;------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+;; profit function
+
+;; profit: Natural Natural -> Int
+;; NEED PURPOSE 
+;; (define (profit attendees ticket-price) 0) 
+
+(define (profit attendees ticket-price)
+  (- (revenue attendees ticket-price) (cost attendees)))
+(check-expect (profit 10 5) -2480)
+;; written explaination: WHAT IS THE COMPUTATION FOR PROFIT 
+
+;; function profit will intake two argyments: number of attendees (attendees) and the price of the ticket (ticket-price)
+;; function profit will take 10 as the value for attendees and 5 as the value for the ticket-price
+;; function profit will 
+
+;; mathematical explaination: 
+
+;; (profit 10 5) (- (revenue 10 5) (cost 10))
+;; (profit 10 5) (- 50 2530)
+;; (profit 10 5) (-2480)
+;;------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+;; 4
+
+(define INTEREST-RATE 0.03)
+(define TIME 20)
+(define BANK-FEES 1500)
+;; 0.03 or 3% is the fixed INTEREST-RATE for this problem so it is defined as a constant
+;; 20 is the fixed TIME (in years) for this problem so it is defined as a constant
+;; $1500 is the fixed BANK-FEE for this problem so it is defined as a constant
+;;------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+;; principal function
+
+;; principal: Natural Natural -> Natural
+;; function principal is going to subtract the down-payment amount from the purchase-price
+;; (define (principal purchase-price down-payment)
+
+(define (principal purchase-price down-payment)
+  (- purchase-price down-payment))
+(check-expect (principal 20 10) 10)
+;; written explaination:
+
+;; function principal is going to take in two values: purchase-price and down payment
+;; function principal is going to subtract the down-payment amount from the purchase-price
+
+;; mathematical explaination:
+
+;; (principal 20 10 (- purchase-price down-payment))
+;; (principal 20 10 (- 20 10)
+;; (principal 20 10 (10) 
+
+;;------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+;; interest function
+
+;; interest: Natural -> Natural 
+;; function interest is going to multiply the interest rate (the constant 0.03) by the principal-amount by the time (the constant 20) in order to produce the interest amount
+;; (define (interest principal-amount) 0) 
+
+(define (interest principal-amount)
+  (* INTEREST-RATE principal-amount TIME))
+(check-expect (interest 100) 60)
+;; written explaination:
+
+;; function interest is going to take in one value: principal-amount
+;; function interest is going to multiply the interest rate (the constant 0.03) by the principal-amount by the time (the constant 20)
+
+;; mathematical explaination:
+
+;; (interest 100 (* INTEREST-RATE principal-amount TIME))
+;; (interest 100 (* 0.03 100 20)
+;; (interest 100 (60) 
+;;------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+;; total-house-cost function
+
+;; total-house-cost: Natural Natural -> Natural 
+;; function total-house-cost is going to calculate the total price of the house by calling FINISH THIS PURPOSE 
+;; (define (total-house-cost purchase-price down-payment) 0)
+
+(define (total-house-cost purchase-price down-payment)
+  (+ purchase-price (interest (principal purchase-price down-payment)) BANK-FEES))
+(check-expect (total-house-cost 1000 100) 3040) 
+;; written explaination for future reference:
+
+;; function total-house-cost is going to take in two values that we have already declared in our previous functions (the values in the check expect will apply here)
+;; function total-house-cost is going to call the function principal on purchase-price and down-payment (principal subtracts dp cost from pp cost)
+;; function total-house-cost is going to call the function interest on 900 (principal-amount) which means that we're going to be doing the following evaluations:
+;; (* 0.03 900 20) which is equal to 540
+;; function-total-house-cost will then add the purchase price and bank fees to the ints we have evaluated for in the previous (working inward to outward)
+;; function-total-house-cost evaluates to 3040 when presented with the following values in the check-expect function
+;; purchase-price = 1000
+;; down-payment = 100
+
+;; mathematical explaination: 
+
+;; (total-house-cost 1000 100) (+ 1000 (interest (principal 1000 100)) 1500))
+;; (total-house-cost 1000 100) (+ 1000 (interest 900) 1500)
+;; (total-house-cost 1000 100) (+ 1000 540 1500)
+;; (total-house-cost 1000 100) (3040)
+;;------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
